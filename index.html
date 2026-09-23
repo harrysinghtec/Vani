@@ -1,218 +1,542 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>A Special Day</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- Background Audio (Add your own romantic track src here) -->
-    <audio id="bg-music" loop>
-        <source src="" type="audio/mpeg">
-    </audio>
-    <button id="music-toggle" class="glass-btn">
-        <svg id="music-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
-    </button>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Vani ❤️</title>
+<style>
+:root{
+  --bg:#09070c; --card:#15111b; --soft:#211927; --pink:#ff6f9f;
+  --rose:#ff9fbd; --text:#fff8fb; --muted:#c9b9c2; --gold:#ffd58a;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 50% 0,#2a1020 0,#09070c 38%,#050407 100%);
+font-family:Georgia,"Times New Roman",serif;color:var(--text);overflow-x:hidden}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.07;
+background-image:radial-gradient(#fff 1px,transparent 1px);background-size:4px 4px}
+section{min-height:100vh;padding:80px 22px;display:flex;align-items:center;justify-content:center}
+.wrap{width:min(920px,100%);margin:auto}.center{text-align:center}
+.eyebrow{letter-spacing:4px;text-transform:uppercase;color:var(--rose);font:600 11px Arial,sans-serif}
+h1{font-size:clamp(48px,12vw,105px);line-height:.92;margin:18px 0}
+h2{font-size:clamp(34px,7vw,60px);margin:12px 0 24px;line-height:1}
+p{font-size:clamp(18px,2.5vw,22px);line-height:1.75;color:var(--muted)}
+.highlight{color:var(--rose)} .gold{color:var(--gold)}
+.btn{display:inline-block;border:1px solid #805066;background:#20121c;color:white;
+padding:14px 23px;border-radius:999px;text-decoration:none;font:600 13px Arial,sans-serif;
+letter-spacing:1px;transition:.25s;cursor:pointer}.btn:hover{transform:translateY(-2px);background:#2b1725}
+.hero{position:relative;text-align:center}.moon{font-size:62px;animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}} @keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.reveal{animation:fade 1s ease both}
+.card{background:linear-gradient(145deg,rgba(35,24,38,.9),rgba(13,10,16,.9));border:1px solid #3b2937;
+border-radius:28px;padding:clamp(25px,5vw,52px);box-shadow:0 25px 80px #0008}
+.quote{border-left:3px solid var(--pink);padding-left:22px;font-style:italic}
+.story-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:28px}
+.photo {
+    width: 100%;
+    min-height: 180px;
+    border-radius: 22px;
+    background: linear-gradient(145deg,#2c1b29,#110d14);
+    border: 1px dashed #755267;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px;
+    color: #bcaab5;
+    font: 13px Arial,sans-serif;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
 
-    <!-- Aurora Animated Background -->
-    <div class="aurora-bg">
-        <div class="aurora-blob blob-1"></div>
-        <div class="aurora-blob blob-2"></div>
-        <div class="aurora-blob blob-3"></div>
-        <div class="stars-overlay"></div>
+.photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 16px;
+    position: relative;
+    inset: auto;
+}
+
+.photo.wide {
+    width: 100%;
+}
+
+.photo:after {
+    content: "";
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font: 11px Arial,sans-serif;
+    color: #bda9b4;
+    opacity: 0;
+    pointer-events: none;
+}
+.photo.wide{aspect-ratio:16/9}
+.timeline{position:relative;margin:45px 0}.timeline:before{content:"";position:absolute;left:18px;top:0;bottom:0;width:1px;background:#6a4055}
+.event{position:relative;padding-left:55px;margin:0 0 42px}.dot{position:absolute;left:10px;top:5px;width:17px;height:17px;border-radius:50%;
+background:var(--pink);box-shadow:0 0 25px #ff6f9f99}.date{font:600 12px Arial,sans-serif;letter-spacing:2px;color:var(--rose)}
+.event h3{font-size:26px;margin:8px 0}.event p{margin:0}
+.names{display:flex;align-items:center;justify-content:center;gap:15px;flex-wrap:wrap;margin:35px 0}
+.name{padding:17px 23px;border-radius:18px;background:#21151f;border:1px solid #4b3040;font-size:20px}
+.arrow{color:var(--pink);font-size:24px}
+.distance{text-align:center}.route{display:flex;align-items:center;gap:12px;margin:35px auto;max-width:720px}
+.pin{font:700 14px Arial,sans-serif;padding:15px;border:1px solid #513343;border-radius:16px;background:#171019;white-space:nowrap}
+.line{height:1px;background:linear-gradient(90deg,transparent,var(--pink),transparent);flex:1;position:relative}
+.line:after{content:"❤️";position:absolute;left:50%;top:-13px;transform:translateX(-50%);background:var(--bg);padding:0 8px}
+.big-number{font-size:clamp(48px,11vw,90px);font-weight:bold;color:var(--rose);line-height:1}
+.small{font:13px Arial,sans-serif;color:#a997a1}
+.reason-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:30px}
+.reason{padding:22px;border:1px solid #3d2a38;border-radius:20px;background:#130e15;font-size:18px}
+.secret{display:none;margin-top:20px}.secret.show{display:block;animation:fade .7s ease}
+.envelope{max-width:650px;margin:30px auto;padding:34px;border:1px solid #6b4b2a;border-radius:24px;background:linear-gradient(145deg,#241a12,#100c08)}
+.shagun{font-size:clamp(65px,15vw,120px);color:var(--gold);font-weight:bold}
+footer{text-align:center;padding:45px 20px 70px;color:#806d77;font:12px Arial,sans-serif}
+@media(max-width:650px){.story-grid,.reason-grid{grid-template-columns:1fr}.route{gap:7px}.pin{font-size:11px;padding:11px 8px}.line{min-width:35px}}
+</style>
+
+<style>
+/* Version 2 — interactive birthday experience */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--pink);z-index:99;transition:width .1s}
+.cursor-heart{position:fixed;pointer-events:none;z-index:100;font-size:16px;animation:heartFly 900ms ease-out forwards}
+@keyframes heartFly{0%{opacity:1;transform:translate(0,0) scale(.7)}100%{opacity:0;transform:translate(var(--dx),-90px) scale(1.4)}}
+.photo{overflow:hidden;position:relative;cursor:pointer}
+.photo:after{content:"Tap to add / view";position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font:11px Arial,sans-serif;color:#bda9b4;opacity:.7}
+
+.tap{font:12px Arial,sans-serif;color:#a997a1;margin-top:10px}
+.heart-button{border:0;background:#241522;color:#fff;border:1px solid #513343;border-radius:999px;padding:14px 18px;cursor:pointer;font-size:18px;min-width:52px}
+.heart-count{font:700 14px Arial,sans-serif;color:var(--rose);margin-left:8px}
+.unlock{max-height:0;overflow:hidden;transition:max-height .8s ease,opacity .8s ease;opacity:0}
+.unlock.open{max-height:800px;opacity:1}
+.memory-button{width:100%;text-align:left;border:1px solid #3d2a38;background:#130e15;color:#fff;border-radius:18px;padding:18px;margin-top:12px;cursor:pointer;font:inherit}
+.memory-button span{color:var(--rose);float:right}
+.pulse{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 10px #ff6f9f00,0 0 28px #ff6f9f55}}
+.confetti{position:fixed;top:-15px;z-index:101;pointer-events:none;animation:confettiFall 2.8s linear forwards}
+@keyframes confettiFall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+</style>
+
+<style>
+#audioGate{position:fixed;inset:0;background:radial-gradient(circle at 50% 35%,#351225 0,#09070c 60%,#050407 100%);
+z-index:200;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;
+transition:opacity .8s ease,visibility .8s ease}
+#audioGate.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.audioGateCard{max-width:500px;padding:45px 28px;border:1px solid #553345;border-radius:30px;
+background:rgba(17,11,18,.88);box-shadow:0 30px 100px #000b}
+.audioHeart{font-size:82px;color:#ff9fbd;animation:heartbeat 1.35s ease-in-out infinite;margin-bottom:10px}
+@keyframes heartbeat{0%,100%{transform:scale(1)}15%{transform:scale(1.16)}30%{transform:scale(1)}45%{transform:scale(1.1)}}
+#audioToggle{position:fixed;right:18px;bottom:18px;z-index:120;width:48px;height:48px;border-radius:50%;
+border:1px solid #684052;background:#181019;color:#fff;font-size:19px;cursor:pointer;box-shadow:0 8px 25px #0008}
+#audioStatus{position:fixed;right:18px;bottom:72px;z-index:120;font:11px Arial,sans-serif;color:#bfaab5;
+background:#130e15;border:1px solid #3d2a38;border-radius:999px;padding:7px 10px;opacity:0;transition:.3s}
+#audioStatus.show{opacity:1}
+</style>
+</head>
+<body><div class="progress" id="progress"></div>
+<div id="audioGate" aria-live="polite">
+  <div class="audioGateCard">
+    <div class="audioHeart">♡</div>
+    <div class="eyebrow">A little something for you</div>
+    <h2>Tap to enter our story</h2>
+    <p>The first song will follow you through our story. ❤️</p>
+    <button class="btn" id="startStory" type="button">🎵 Enter</button>
+  </div>
+</div>
+<audio id="storyAudio" src="1st.mp3" preload="auto" loop></audio>
+<audio id="finalAudio" src="finalaudio.mp3" preload="auto"></audio>
+<button id="audioToggle" type="button" aria-label="Pause music" title="Pause music">🔊</button>
+<div id="audioStatus" aria-live="polite">Music paused</div>
+
+
+<section class="hero">
+<div class="wrap reveal">
+<div class="moon">🌙</div>
+<div class="eyebrow">23 September 2026 · A little world made for you</div>
+<h1>For <span class="highlight">Vani</span> ❤️</h1>
+<p>Some people enter your life by plan.<br>Some enter it on a completely ordinary <b>afternoon.</b></p>
+<a class="btn" href="#begin">✨ Start Our Story</a>
+</div>
+</section>
+
+<section id="begin">
+<div class="wrap">
+<div class="eyebrow">01 · The beginning</div>
+<h2>It started on <span class="highlight">1 August, in the afternoon.</span></h2>
+<div class="card">
+<p>It was an ordinary afternoon. I wasn't even planning to use Seasoul, but somehow I opened it.</p>
+<p>Your name appeared on my feed.</p>
+<p>I messaged you without knowing that the girl behind that profile would become such an important person in my life.</p>
+<div class="quote">“Do you trust in intuition or logic more?”</div>
+<p>And the funniest part? I wasn't even expecting a reply. It was a pre-generated message from the app. I just used it to get your attention.</p>
+<p>Somehow, <span class="highlight">it worked.</span> 😂</p>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<div class="eyebrow">02 · Somehow, us</div>
+<h2>From strangers to <span class="highlight">us.</span></h2>
+<div class="timeline">
+<div class="event"><span class="dot"></span><div class="date">1 AUGUST</div><h3>We found each other</h3><p>We talked, laughed and somehow the conversation just felt easy from day one.</p></div>
+<div class="event"><span class="dot"></span><div class="date">THE SAME DAY</div><h3>Seasoul → Instagram</h3><p>Even finding each other on Instagram became a funny memory because we had accidentally messaged different people while looking for each other.</p></div>
+<div class="event"><span class="dot"></span><div class="date">1 AUGUST</div><h3>And somehow… we became a couple</h3><p>No long buildup. No complicated story. Just an amazing bond that made us both feel like we had to choose each other.</p></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap center">
+<div class="eyebrow">03 · Three names, one person</div>
+<h2>Your names, our story.</h2>
+<div class="names">
+<div class="name">Velvet Hex</div><div class="arrow">→</div>
+<div class="name">Vani</div><div class="arrow">→</div>
+<div class="name">Bhanita Rabha</div>
+</div>
+<p>Three names. One person.<br>And someday, perhaps, the name I'll see on our <span class="gold">wedding card.</span> ❤️</p>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<div class="eyebrow">04 · The impossible part</div>
+<h2>It makes absolutely <span class="highlight">no sense.</span></h2>
+<div class="card">
+<p>We're thousands of kilometres apart. We come from different cultures and different backgrounds.</p>
+<p>On paper, maybe we shouldn't even have found each other.</p>
+<p>Yet somehow, you're closer to me than some people who live right next to each other.</p>
+<p>I don't know how that random night happened. I don't know how a one-in-a-million chance brought you into my life.</p>
+<p>I'm just incredibly happy that <span class="highlight">it did.</span></p>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap distance">
+<div class="eyebrow">05 · The distance</div>
+<h2>Far apart. <span class="highlight">Still close.</span></h2>
+<div class="route">
+<div class="pin">📍 783124<br><span class="small">Vani</span></div>
+<div class="line"></div>
+<div class="pin">📍 140306<br><span class="small">Harry</span></div>
+</div>
+<div class="big-number">1,985 km</div>
+<p>The distance between us: 1,985 km.</p>
+<p class="quote">“Distance can be measured in kilometres. What we have can't.”</p>
+</div>
+</section>
+
+<section>
+  <div class="wrap">
+
+    <div class="eyebrow">06 · Our little memories</div>
+    <h2>Moments I'd keep forever.</h2>
+
+    <div class="story-grid">
+
+      <div class="photo">
+        <img src="photos/first.jpg" alt="Our first memory">
+      </div>
+
+      <div class="photo">
+        <img src="photos/her1.jpg" alt="A favorite photo of Vani">
+      </div>
+
+      <div class="photo wide" style="grid-column: 1 / -1;">
+        <img src="photos/her2.jpg" alt="Another special memory">
+      </div>
+
     </div>
 
-    <!-- Global Canvas for particles (Confetti/Fireworks) -->
-    <canvas id="fx-canvas"></canvas>
+  </div>
+</section>
 
-    <main id="app-container">
-        
-        <!-- Screen 1: Loading -->
-        <section id="screen-1" class="screen active flex-center">
-            <div class="loading-container glass-panel">
-                <div class="heartbeat-loader">❤️</div>
-                <h2 class="font-poppins">Loading...</h2>
-                <p class="font-inter fade-text">Looking for today's luck...</p>
-            </div>
-        </section>
+<section>
+<div class="wrap">
+<div class="eyebrow">07 · One movie, one feeling</div>
+<h2><span class="highlight">Ok Jaanu</span> 🎬</h2>
+<div class="card">
+<p>We watched <i>Ok Jaanu</i> together online.</p>
+<p>It's just a movie, but that night it didn't feel like I was watching something with someone thousands of kilometres away.</p>
+<p>For those few hours, it genuinely felt like <span class="highlight">I was with you.</span></p>
+<div class="photo wide"><img src="photos/Okjaanu.webp" alt="Our first memory"></div>
+</div>
+</div>
+</section>
 
-        <!-- Screen 2: Lock Screen -->
-        <section id="screen-2" class="screen">
-            <div class="lock-screen flex-col">
-                <div class="lock-header">
-                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="white" stroke-width="2" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                </div>
-                <div class="time-container">
-                    <h1 class="font-inter time-text">00:00</h1>
-                    <h3 class="font-inter date-text">Saturday, 1 August</h3>
-                </div>
-                <div class="notification glass-panel">
-                    <div class="notif-header">
-                        <span>Calendar</span>
-                        <span>Now</span>
-                    </div>
-                    <div class="notif-body font-poppins">
-                        <h4>Happy Girlfriend Day ❤️</h4>
-                        <p>Something special is waiting for you...</p>
-                    </div>
-                </div>
-                <div class="swipe-up-container" id="swipe-area">
-                    <div class="chevron"></div>
-                    <div class="chevron"></div>
-                    <div class="chevron"></div>
-                    <p class="font-inter">Swipe up to unlock</p>
-                </div>
-            </div>
-        </section>
+<section>
+<div class="wrap">
+<div class="eyebrow">08 · The little things</div>
+<h2>Things I notice about <span class="highlight">you.</span></h2>
+<div class="reason-grid">
+<div class="reason">❤️ You have loved me since day one.</div>
+<div class="reason">🔋 Your phone barely holds a charge, yet you still make an effort to text me while charging it.</div>
+<div class="reason">🥺 You miss me when your phone dies.</div>
+<div class="reason">🤝 You have always made a commitment to stay with me.</div>
+<div class="reason">✨ You put effort into us.</div>
+<div class="reason">💗 You have the heart I always wanted my girl to have.</div>
+</div>
+</div>
+</section>
 
-        <!-- Screen 3: Story -->
-        <section id="screen-3" class="screen flex-center">
-            <div class="story-container font-playfair">
-                <p class="story-line">Out of millions of people...</p>
-                <p class="story-line">Somehow...</p>
-                <p class="story-line">Today...</p>
-                <p class="story-line highlight">I found you.</p>
-            </div>
-        </section>
+<section>
+<div class="wrap">
+<div class="eyebrow">09 · Important investigation</div>
+<h2>Are you actually <span class="highlight">AI?</span> 🤨</h2>
+<div class="card center">
+<p>Because seriously… you're everything I wanted in my girl.</p>
+<p>Your looks. Your heart. The little things you do. The way you care. The effort you put into us.</p>
+<p><b>Everything.</b></p>
+<p>So I'm still investigating.</p>
+<p style="font-size:34px">🤨</p>
+<p>But even if you are…</p>
+<h2>I'd still date you. ❤️</h2>
+</div>
+</div>
+</section>
 
-        <!-- Screen 4: Universe -->
-        <section id="screen-4" class="screen">
-            <canvas id="universe-canvas"></canvas>
-            <div class="universe-text glass-panel font-poppins">
-                <p class="uni-line">Different places.</p>
-                <p class="uni-line">Same day.</p>
-                <p class="uni-line highlight">One random swipe.</p>
-            </div>
-            <button class="continue-btn glass-btn" onclick="nextScreen(5)">Continue ✨</button>
-        </section>
+<section>
+<div class="wrap">
+<div class="eyebrow">10 · My promise to you</div>
+<h2>On your birthday, <span class="highlight">let me promise.</span></h2>
+<div class="card">
+<p>Let me promise you to love you each and every moment of our life, every second.</p>
+<p>Let me promise to take care of you and make you happy.</p>
+<p>Let me promise to be with you through all our good memories and all our bad ones.</p>
+<p>Not just when things are easy.</p>
+<p><span class="highlight">But through all of it.</span></p>
+</div>
+</div>
+</section>
 
-        <!-- Screen 5: Dating App -->
-        <section id="screen-5" class="screen flex-center">
-            <div class="app-mockup">
-                <div class="app-header font-poppins">Discover</div>
-                <div class="card-stack" id="card-stack">
-                    <!-- Cards injected via JS -->
-                </div>
-                <div class="app-controls">
-                    <div class="ctrl-btn cancel">✕</div>
-                    <div class="ctrl-btn heart">❤️</div>
-                </div>
-            </div>
-        </section>
+<section>
+<div class="wrap">
+<div class="eyebrow">11 · A little shagun</div>
+<h2>For the girl who brings <span class="gold">happiness.</span></h2>
+<div class="envelope center">
+<div class="shagun">₹501</div>
+<p>In our Indian culture, ₹101, ₹201 or ₹501 can be given as <b>shagun</b>. The ₹1 is the auspicious part — a small blessing for something good.</p>
+<p>For me, this isn't about the amount.</p>
+<p>I see you as someone who can bring happiness, love and prosperity into a family.</p>
+<p>So yes… I may have some <i>devilish thoughts</i> about you. 😏</p>
+<p>But beneath all of that is something I want you to always know:</p>
+<h3 class="gold">I respect you. I love you. And I cherish you.</h3>
+</div>
+</div>
+</section>
 
-        <!-- Screen 6: Instagram Chat -->
-        <section id="screen-6" class="screen flex-center">
-            <div class="chat-ui glass-panel">
-                <div class="chat-header">
-                    <div class="profile-pic"></div>
-                    <span class="font-poppins">You ❤️</span>
-                </div>
-                <div class="chat-body" id="chat-body">
-                    <!-- Chat bubbles injected via JS -->
-                    <div class="typing-indicator" id="typing-indicator" style="display: none;">
-                        <span></span><span></span><span></span>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Screen 7: Timeline -->
-        <section id="screen-7" class="screen flex-center">
-            <div class="timeline-container glass-panel font-poppins">
-                <h2>Our Story So Far</h2>
-                <ul class="timeline-list">
-                    <li class="timeline-item"><span>✓</span> We matched</li>
-                    <li class="timeline-item"><span>✓</span> We talked</li>
-                    <li class="timeline-item"><span>✓</span> We shared Instagram</li>
-                    <li class="timeline-item"><span>✓</span> You made my Girlfriend Day special</li>
-                    <li class="timeline-item future"><span>?</span> Tomorrow...</li>
-                </ul>
-                <button class="continue-btn glass-btn timeline-btn" onclick="nextScreen(8)">What's next?</button>
-            </div>
-        </section>
+<section>
+<div class="wrap center">
+<div class="eyebrow">A tiny interactive surprise</div>
+<h2>How many hearts can you give me? ❤️</h2>
+<div class="card">
+<p>Tap the heart. There is no limit.</p>
+<button class="heart-button pulse" id="heartBtn" type="button" aria-label="Send a heart">❤️ <span class="heart-count" id="heartCount">0</span></button>
+<p id="heartMessage" class="tap">Every tap = one more little reminder that I love you.</p>
+</div>
+</div>
+</section>
 
-        <!-- Screen 8: Quiz -->
-        <section id="screen-8" class="screen flex-center">
-            <div class="quiz-container glass-panel text-center">
-                <h2 class="font-poppins">Quick Question...</h2>
-                <p class="font-playfair quiz-q">Who made my day today?</p>
-                <div class="quiz-buttons flex-col">
-                    <button class="glass-btn primary" onclick="nextScreen(9)">You ❤️</button>
-                    <button class="glass-btn secondary" onclick="nextScreen(9)">Definitely You ❤️</button>
-                </div>
-            </div>
-        </section>
+<section>
+<div class="wrap">
+<div class="eyebrow">A memory waiting to be opened</div>
+<h2>The things we haven't done <span class="highlight">yet.</span></h2>
+<div class="card">
+<button class="memory-button" type="button" data-memory="Our first video call.">📹 First video call <span>+</span></button>
+<div class="unlock"><p>Still waiting for us. And I can't wait to finally see your face while we're actually talking.</p></div>
+<button class="memory-button" type="button" data-memory="Our first meeting.">✈️ First time meeting <span>+</span></button>
+<div class="unlock"><p>1,985 km is going to feel very small when I finally get to stand in front of you.</p></div>
+<button class="memory-button" type="button" data-memory="Our first hug.">🤗 First hug <span>+</span></button>
+<div class="unlock"><p>The one I keep imagining when I say I wish I could take you in my arms.</p></div>
+<button class="memory-button" type="button" data-memory="Our future.">💍 The future <span>+</span></button>
+<div class="unlock"><p>Maybe one day the name “Bhanita Rabha” really will be on a wedding card beside mine.</p></div>
+</div>
+</div>
+</section>
 
-        <!-- Screen 9: Future Memories -->
-        <section id="screen-9" class="screen flex-center">
-            <div class="memories-container">
-                <div class="polaroid-stack">
-                    <div class="polaroid p1 glass-panel">
-                        <div class="photo-placeholder"></div>
-                    </div>
-                    <div class="polaroid p2 glass-panel">
-                        <div class="photo-placeholder"></div>
-                    </div>
-                    <div class="polaroid p3 glass-panel">
-                        <div class="photo-placeholder flex-center">
-                            <span class="font-playfair">?</span>
-                        </div>
-                    </div>
-                </div>
-                <p class="font-playfair memory-caption">Maybe we'll fill these someday...</p>
-                <button class="continue-btn glass-btn" onclick="startHeartCanvas()">I hope so</button>
-            </div>
-        </section>
+<section>
+<div class="wrap center">
+<div class="eyebrow">12 · One last thing</div>
+<h2>There is still so much <span class="highlight">to come.</span></h2>
+<div class="card">
+<p>We haven't even had our first voice call or video call yet.</p>
+<p>We've only been together for a short time, and somehow you've already become such a huge part of my life.</p>
+<p>We've got so many firsts still waiting for us.</p>
+<p>Our first video call.<br>Our first time meeting.<br>Our first hug.<br>And all the memories we haven't made yet.</p>
+<p class="quote">I hope one day I can finally take you in my arms and tell you everything I've tried to put into this little page.</p>
+</div>
+<br>
+<button class="btn" onclick="document.getElementById('secret').classList.toggle('show')">💌 Open the final message</button>
+<div id="secret" class="secret card">
+<h2>Happy Birthday, Vani. ❤️</h2>
+<p>I could go on for hours telling you how much value you hold in my life.</p>
+<p>But for today, I just want you to know one thing:</p>
+<h2 class="highlight">I'm so glad that random afternoon happened.</h2>
+<p>Out of all the people, all the places, all the possibilities… somehow it led me to you.</p>
+<p>Happy birthday to the girl who started as a random profile on an app and somehow became my person.</p>
+<p><b>I love you so much.</b></p>
+<p>— Harry ❤️</p>
+</div>
+</div>
+</section>
 
-        <!-- Screen 10: Heart Animation -->
-        <section id="screen-10" class="screen">
-            <canvas id="heart-canvas"></canvas>
-            <button class="continue-btn glass-btn float-bottom" onclick="nextScreen(11)">Open ❤️</button>
-        </section>
+<footer>
+Made with ❤️ for Vani · 23 September 2026<br>
+</footer>
 
-        <!-- Screen 11: Proposal -->
-        <section id="screen-11" class="screen flex-center">
-            <div class="proposal-container glass-panel text-center">
-                <p class="font-poppins prop-text">We've only known each other for one day.</p>
-                <p class="font-poppins prop-text delay-1">I know.</p>
-                <p class="font-poppins prop-text delay-2">But meeting you genuinely made today special.</p>
-                <p class="font-poppins prop-text delay-3">I'd love to keep getting to know you.</p>
-                <p class="font-playfair prop-highlight delay-4">If it feels right...</p>
-                <h2 class="font-playfair prop-main delay-5">Would you like to be my girlfriend?</h2>
-                
-                <div class="decision-buttons delay-6">
-                    <button id="btn-yes" class="btn-yes font-poppins">YES ❤️</button>
-                    <button id="btn-no" class="btn-no glass-btn font-poppins">Let's get to know each other first 🌸</button>
-                </div>
-            </div>
-        </section>
+<script>
+(() => {
+  const progress = document.getElementById('progress');
+  const heartBtn = document.getElementById('heartBtn');
+  const heartCount = document.getElementById('heartCount');
+  const heartMessage = document.getElementById('heartMessage');
 
-        <!-- Screen 12: YES Ending -->
-        <section id="screen-12-yes" class="screen flex-center">
-            <div class="ending-container text-center">
-                <h1 class="font-playfair ending-title">You just made someone very, very happy ❤️</h1>
-                <p class="font-poppins">Happy Girlfriend Day.</p>
-            </div>
-        </section>
+  function updateProgress(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (max > 0 ? Math.min(100, window.scrollY / max * 100) : 0) + '%';
+  }
+  window.addEventListener('scroll', updateProgress, {passive:true});
+  updateProgress();
 
-        <!-- Screen 12: NO Ending -->
-        <section id="screen-12-no" class="screen flex-center">
-            <div class="ending-container glass-panel text-center">
-                <h2 class="font-playfair">That's perfectly okay.</h2>
-                <p class="font-poppins mt-4">Good things don't have to be rushed.</p>
-                <p class="font-poppins mt-2">I'd still love getting to know you one conversation at a time ❤️</p>
-                <p class="font-poppins mt-4">Happy Girlfriend Day 🌸</p>
-            </div>
-        </section>
+  let count = 0;
+  if (heartBtn) heartBtn.addEventListener('click', (e) => {
+    count++;
+    heartCount.textContent = count;
+    const heart = document.createElement('span');
+    heart.className = 'cursor-heart';
+    heart.textContent = count % 5 === 0 ? '💖' : '❤️';
+    heart.style.left = e.clientX + 'px';
+    heart.style.top = e.clientY + 'px';
+    heart.style.setProperty('--dx', ((Math.random()*120)-60) + 'px');
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 950);
+    if(count === 1) heartMessage.textContent = 'Okay… one heart received. But I want more. ❤️';
+    if(count === 5) heartMessage.textContent = 'Five already? I knew you loved me. 😌';
+    if(count === 10) heartMessage.textContent = 'Okay, okay… you win. Happy birthday, Vani. ❤️';
+  });
 
-    </main>
-    <script src="script.js"></script>
+  document.querySelectorAll('.memory-button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const panel = btn.nextElementSibling;
+      const open = panel.classList.toggle('open');
+      btn.querySelector('span').textContent = open ? '−' : '+';
+    });
+  });
+
+  // Gentle tap anywhere creates a tiny heart, but avoids controls and text selection.
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('button,a,input,textarea,select,.photo')) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const heart = document.createElement('span');
+    heart.className = 'cursor-heart';
+    heart.textContent = '♡';
+    heart.style.left = e.clientX + 'px';
+    heart.style.top = e.clientY + 'px';
+    heart.style.setProperty('--dx', ((Math.random()*80)-40) + 'px');
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 950);
+  });
+
+  // Birthday celebration when the final message opens.
+  const finalBtn = document.querySelector('button[onclick*="secret"]');
+  const storyAudio = document.getElementById('storyAudio');
+  const finalAudio = document.getElementById('finalAudio');
+  const audioGate = document.getElementById('audioGate');
+  const startStory = document.getElementById('startStory');
+  const audioToggle = document.getElementById('audioToggle');
+  const audioStatus = document.getElementById('audioStatus');
+  let finalStarted = false;
+
+  async function startStoryMusic(){
+    try{
+      finalAudio.pause();
+      finalAudio.currentTime = 0;
+      await storyAudio.play();
+      audioToggle.textContent = '🔊';
+      audioToggle.setAttribute('aria-label','Pause music');
+      return true;
+    }catch(err){
+      return false;
+    }
+  }
+
+  // Try immediately. Modern browsers may block autoplay; the entry button is the reliable fallback.
+  startStoryMusic().then(ok => {
+    if(ok) audioGate.classList.add('hidden');
+  });
+
+  startStory.addEventListener('click', async () => {
+    const ok = await startStoryMusic();
+    if(ok) audioGate.classList.add('hidden');
+  });
+
+  audioToggle.addEventListener('click', async () => {
+    if(finalStarted){
+      if(finalAudio.paused){
+        await finalAudio.play();
+        audioToggle.textContent='🔊';
+        audioStatus.textContent='Final message music playing';
+      }else{
+        finalAudio.pause();
+        audioToggle.textContent='🔇';
+        audioStatus.textContent='Music paused';
+      }
+    }else{
+      if(storyAudio.paused){
+        await storyAudio.play();
+        audioToggle.textContent='🔊';
+        audioStatus.textContent='Story music playing';
+      }else{
+        storyAudio.pause();
+        audioToggle.textContent='🔇';
+        audioStatus.textContent='Music paused';
+      }
+    }
+    audioStatus.classList.add('show');
+    setTimeout(()=>audioStatus.classList.remove('show'),1400);
+  });
+
+  if(finalBtn){
+    finalBtn.removeAttribute('onclick');
+    finalBtn.addEventListener('click', async () => {
+      const secret = document.getElementById('secret');
+      const wasOpen = secret.classList.contains('show');
+      secret.classList.toggle('show');
+
+      // Switch tracks only when the final message is actually opened.
+      if(!wasOpen && secret.classList.contains('show') && !finalStarted){
+        finalStarted = true;
+        storyAudio.pause();
+        storyAudio.currentTime = 0;
+        try{
+          await finalAudio.play();
+          audioToggle.textContent='🔊';
+        }catch(err){
+          audioToggle.textContent='🔇';
+        }
+      }
+
+      if(!wasOpen && secret.classList.contains('show')){
+        for(let i=0;i<34;i++){
+          const c=document.createElement('span');
+          c.className='confetti';
+          c.textContent=['♥','✦','♡','✧','❤'][i%5];
+          c.style.left=(Math.random()*100)+'vw';
+          c.style.fontSize=(12+Math.random()*18)+'px';
+          c.style.animationDelay=(Math.random()*0.7)+'s';
+          document.body.appendChild(c);
+          setTimeout(()=>c.remove(),3400);
+        }
+      }
+    });
+  }
+})();
+</script>
 </body>
 </html>
